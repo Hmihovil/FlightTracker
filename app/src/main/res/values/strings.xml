@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">FlightTracker</string>
+
+    <!-- Loading menu strings -->
+    <string name="website">Deedoodle.com</string>
+
+    <!-- Flight Strings -->
+    <string name="flight_textBox">Enter code here</string>
+    <string name="flight_textButton">Check</string>
+    <string name="frag_saveButton">Save</string>
+    <string name="frag_delButton">Delete</string>
+    <string name="frag_backButton">Back</string>
+    <string name="frag_saveFlight">Saved Flights</string>
+    <string name="activity_departureRadio">Departure</string>
+    <string name="activity_arrivalRadio">Arrival</string>
+
+    <!-- menu Strings -->
+    <string name="menu_dic">Dictionary</string>
+    <string name="menu_news">News</string>
+    <string name="menu_flight">Flights</string>
+    <string name="menu_article">Articles</string>
+    <string name="menu_about">About</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_saved">Saved list</string>
+
+</resources>

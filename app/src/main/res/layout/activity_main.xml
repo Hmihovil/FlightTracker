@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#282629">
+
+    <ProgressBar
+        android:id="@+id/cpb1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indeterminateDrawable="@drawable/cpb1"
+        android:layout_alignBottom="@id/dee_logo"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/dee_logo"
+        android:layout_width="275dp"
+        android:layout_height="594dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/dhlogo2" />
+
+    <TextView
+        android:id="@+id/text_website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp"
+        android:textColor="#86b1b9"
+        android:textSize="25dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/website"/>
+
+
+</RelativeLayout>
