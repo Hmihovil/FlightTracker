@@ -403,7 +403,7 @@ public class FlightMain extends AppCompatActivity {
                     null, null, null, null, null);
         }
 
-        public void deleteID(int id){
+        public void deleteID(long id){
 
             db.delete(DATABASE_TABLE, KEY_ROW_ID + " = " + id, null);
         }

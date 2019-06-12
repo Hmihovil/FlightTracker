@@ -16,18 +16,12 @@ import java.util.List;
 
 public class EmptyFActivity extends AppCompatActivity {  //EMPTY ACTIVITY CLASS---------------------------------------------------------------------------
 
-    Button backButton, saveButton, delButton;
-    FlightMain.DatabaseHelper db;
+    private Button backButton, saveButton, delButton;
+    private FlightMain.DatabaseHelper db;
     private ListView fragList;
     private FlightMain.FlightFragListAdapter fragAdapter;
     private Flight flight;
     private List<Flight> flights = new ArrayList<>();
-    private String departure;
-    private String arrival;
-    private String altitude;
-    private String speed;
-    private String status;
-    private boolean isSaved = false;
     private FlightFragment fFragment;
     private int itemPosition = 0;
 
@@ -66,6 +60,7 @@ public class EmptyFActivity extends AppCompatActivity {  //EMPTY ACTIVITY CLASS-
             public void onClick(View v) {
 
                 Intent back = new Intent(EmptyFActivity.this, FlightMain.class);
+                flights.clear();
                 startActivity(back);
             }
         });
@@ -135,8 +130,11 @@ public class EmptyFActivity extends AppCompatActivity {  //EMPTY ACTIVITY CLASS-
                         .setAction("Confirm", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+
+                                long tempID = flights.get(itemPosition -1).getId();
+
                                 db.open();
-                                db.deleteID(itemPosition);
+                                db.deleteID(tempID);
                                 db.close();
                                 if(flights!= null) {
                                     flights.remove(itemPosition - 1);
@@ -153,11 +151,13 @@ public class EmptyFActivity extends AppCompatActivity {  //EMPTY ACTIVITY CLASS-
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 
-            flights.add(new Flight(c.getString(c.getColumnIndex(db.KEY_ROW_DEP)),
+            flights.add(new Flight(c.getLong(c.getColumnIndex(db.KEY_ROW_ID)),
+                    c.getString(c.getColumnIndex(db.KEY_ROW_DEP)),
                     c.getString(c.getColumnIndex(db.KEY_ROW_ARR)),
                     c.getString(c.getColumnIndex(db.KEY_ROW_SPEED)),
                     c.getString(c.getColumnIndex(db.KEY_ROW_ALT)),
                     c.getString(c.getColumnIndex(db.KEY_ROW_STATUS))));
+
         }
         db.close();
 
