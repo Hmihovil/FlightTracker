@@ -55,9 +55,9 @@ public class FlightMain extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 6;
     private String API;
-    private ListView fListView;
+    public ListView fListView;
     ProgressBar progressBar;
-    private FlightListAdapter adapter;
+    public FlightListAdapter adapter;
     private Button checkButton;
     private EditText flightText;
     private TextView textView, text1, text2, text3, text4, text5, text6;
@@ -226,9 +226,9 @@ public class FlightMain extends AppCompatActivity {
 
     public class FlightAPI extends AsyncTask<String, Integer, String> {
 
-        String speed, status, departure, arrival;
-        String altitude = "Unknown";
-        Flight flight;
+        private String speed, status, departure, arrival;
+        private String altitude = "Unknown";
+        private Flight flight;
         private FlightMain activity = new FlightMain();
 
         @Override
@@ -314,6 +314,8 @@ public class FlightMain extends AppCompatActivity {
 
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setProgress(values[0]);
+            fListView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
 
         @Override
