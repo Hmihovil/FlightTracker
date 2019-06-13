@@ -8,7 +8,7 @@ package com.example.flighttracker;
 
 public class Flight {
 
-    private int id;
+    private long id;
     private String departure;
     private String arrival;
     private String speed;
@@ -36,7 +36,7 @@ public class Flight {
         this.status = status;
     }
 
-    public Flight(int id, String departure, String arrival, String speed, String altitude, String status){
+    public Flight(long id, String departure, String arrival, String speed, String altitude, String status){
 
         this.id = id;
         this.departure = departure;
@@ -46,12 +46,12 @@ public class Flight {
         this.status = status;
     }
 
-    public void setId(int id){
+    public void setId(long id){
 
         this.id = id;
     }
 
-    public int getId(){
+    public long getId(){
 
         return id;
     }

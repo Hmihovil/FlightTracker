@@ -36,7 +36,7 @@ public class FlightListAdapter extends ArrayAdapter<Flight> {
 
         listItem = LayoutInflater.from(fContext).inflate(R.layout.list_row_flightmain, parent, false);
 
-        Flight currentFlight = getItem(position);
+        //Flight currentFlight = getItem(position);
 
         TextView fDeparture = (TextView)listItem.findViewById(R.id.flightRowDeparture);
         fDeparture.setText(flightList.get(position).getDeparture());
