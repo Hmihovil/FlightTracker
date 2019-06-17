@@ -133,6 +133,7 @@ public class FlightMain extends AppCompatActivity {
                     //If no flights show up this gets called
                     if(isFlights == false){
 
+                        flightText.onEditorAction(EditorInfo.IME_ACTION_DONE);
                         flights.add(new Flight("No flights detected or Database Down"));
                         adapter = new FlightListAdapter(getApplicationContext(), flights);
                     }

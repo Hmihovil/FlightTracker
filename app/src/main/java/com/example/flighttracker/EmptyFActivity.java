@@ -134,13 +134,19 @@ public class EmptyFActivity extends AppCompatActivity {  //EMPTY ACTIVITY CLASS-
                                 long tempID = flights.get(itemPosition -1).getId();
 
                                 db.open();
-                                db.deleteID(tempID);
-                                db.close();
-                                if(flights!= null) {
-                                    flights.remove(itemPosition - 1);
+                                try{
+
+                                    db.deleteID(tempID);
+                                    db.close();
+                                    if(flights!= null) {
+                                        flights.remove(itemPosition - 1);
+                                    }
+                                    fragList.setAdapter(fragAdapter);
+                                    fragAdapter.notifyDataSetChanged();
+                                }catch(Exception e){
+
                                 }
-                                fragList.setAdapter(fragAdapter);
-                                fragAdapter.notifyDataSetChanged();
+
                             }
                         }).show();
             }
