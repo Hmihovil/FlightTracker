@@ -117,11 +117,12 @@ public class FlightMain extends AppCompatActivity {
                     FlightAPI netWorkThread = new FlightAPI();
                     netWorkThread.execute(API);
 
-                    String checkFlight = flights.get(0).getStatus();
+                    //String checkFlight = flights;
 
-                    if(checkFlight != null){
+                    if(flights != null){
 
-                        isFlights = true;
+                        //isFlights = true;
+                        Log.e("Flights Test Data", "" + flights);
                     }
 
                     //shows the console the current Flight Code
@@ -132,7 +133,7 @@ public class FlightMain extends AppCompatActivity {
                     //If no flights show up this gets called
                     if(isFlights == false){
 
-                        flights.add(new Flight("No flights available"));
+                        flights.add(new Flight("No flights detected or Database Down"));
                         adapter = new FlightListAdapter(getApplicationContext(), flights);
                     }
 
@@ -156,20 +157,24 @@ public class FlightMain extends AppCompatActivity {
 
                 dataToPass = new Bundle();
 
-                //all the data we are passing to our fragment
-                dataToPass.putString("info", flightText.getText().toString());
-                dataToPass.putString("departure", flights.get(position).getDeparture());
-                dataToPass.putString("arrival", flights.get(position).getArrival());
-                dataToPass.putString("speed", flights.get(position).getSpeed());
-                dataToPass.putString("altitude", flights.get(position).getAltitude());
-                dataToPass.putString("status", flights.get(position).getStatus());
+                //This if statement will not allow you to click on the item if it detects no flights.
+                if(flights.get(0).getDeparture() != "No flights detected or Database Down") {
 
-                flight = new Flight(departure, arrival, speed, altitude, status);
+                    //all the data we are passing to our fragment
+                    dataToPass.putString("info", flightText.getText().toString());
+                    dataToPass.putString("departure", flights.get(position).getDeparture());
+                    dataToPass.putString("arrival", flights.get(position).getArrival());
+                    dataToPass.putString("speed", flights.get(position).getSpeed());
+                    dataToPass.putString("altitude", flights.get(position).getAltitude());
+                    dataToPass.putString("status", flights.get(position).getStatus());
 
-                //Jump to the fragment
-                Intent nextActivity = new Intent(FlightMain.this, EmptyFActivity.class); //create and empty class??---------------------------
-                nextActivity.putExtras(dataToPass); //sending the data to the fragment
-                startActivityForResult(nextActivity, REQUEST_CODE); //used this to return data back from the fragment to here using request code
+                    flight = new Flight(departure, arrival, speed, altitude, status);
+
+                    //Jump to the fragment
+                    Intent nextActivity = new Intent(FlightMain.this, EmptyFActivity.class); //create and empty class??---------------------------
+                    nextActivity.putExtras(dataToPass); //sending the data to the fragment
+                    startActivityForResult(nextActivity, REQUEST_CODE); //used this to return data back from the fragment to here using request code
+                }
             }
         });
 

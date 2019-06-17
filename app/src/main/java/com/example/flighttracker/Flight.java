@@ -27,9 +27,9 @@ public class Flight {
         error = null;
     }
 
-    public Flight(String status){
+    public Flight(String departure){
 
-        this.status = status;
+        this.departure = departure;
     }
 
     public Flight(String departure, String arrival, String speed, String altitude, String status){
