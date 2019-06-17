@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -143,8 +144,10 @@ public class EmptyFActivity extends AppCompatActivity {  //EMPTY ACTIVITY CLASS-
                                     }
                                     fragList.setAdapter(fragAdapter);
                                     fragAdapter.notifyDataSetChanged();
-                                }catch(Exception e){
+                                }catch(NullPointerException e){
 
+                                    e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(), "Please select item to delete", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
