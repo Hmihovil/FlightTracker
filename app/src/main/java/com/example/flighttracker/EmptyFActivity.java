@@ -132,11 +132,12 @@ public class EmptyFActivity extends AppCompatActivity {  //EMPTY ACTIVITY CLASS-
                             @Override
                             public void onClick(View v) {
 
-                                long tempID = flights.get(itemPosition -1).getId();
 
-                                db.open();
                                 try{
 
+                                    long tempID = flights.get(itemPosition -1).getId();
+
+                                    db.open();
                                     db.deleteID(tempID);
                                     db.close();
                                     if(flights!= null) {
@@ -144,7 +145,7 @@ public class EmptyFActivity extends AppCompatActivity {  //EMPTY ACTIVITY CLASS-
                                     }
                                     fragList.setAdapter(fragAdapter);
                                     fragAdapter.notifyDataSetChanged();
-                                }catch(NullPointerException e){
+                                }catch(ArrayIndexOutOfBoundsException e){
 
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "Please select item to delete", Toast.LENGTH_SHORT).show();
