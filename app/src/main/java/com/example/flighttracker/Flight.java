@@ -27,6 +27,11 @@ public class Flight {
         error = null;
     }
 
+    public Flight(String status){
+
+        this.status = status;
+    }
+
     public Flight(String departure, String arrival, String speed, String altitude, String status){
 
         this.departure = departure;

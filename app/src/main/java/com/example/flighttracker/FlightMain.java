@@ -67,6 +67,7 @@ public class FlightMain extends AppCompatActivity {
     private List<Flight> flights;
     private Bundle dataToPass;
     private Toolbar toolbar;
+    private boolean isFlights = false;
     EmptyFActivity emptyFActivity = new EmptyFActivity();
     private String departure, arrival, speed, altitude, status;
 
@@ -92,11 +93,11 @@ public class FlightMain extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId){
                     case R.id.radio_dep:
-                        API = "http://aviation-edge.com/v2/public/flights?key=8e0a99-d48b74&depIata=" + flightText.getText().toString().toUpperCase();
+                        API = "http://aviation-edge.com/v2/public/flights?key=820e1e-7e8a24&depIata=" + flightText.getText().toString().toUpperCase();
                         break;
 
                     case R.id.radio_arr:
-                        API = "http://aviation-edge.com/v2/public/flights?key=8e0a99-d48b74&arrIata=" + flightText.getText().toString().toUpperCase();
+                        API = "http://aviation-edge.com/v2/public/flights?key=820e1e-7e8a24&arrIata=" + flightText.getText().toString().toUpperCase();
                         break;
                 }
             }
@@ -116,10 +117,24 @@ public class FlightMain extends AppCompatActivity {
                     FlightAPI netWorkThread = new FlightAPI();
                     netWorkThread.execute(API);
 
+                    String checkFlight = flights.get(0).getStatus();
+
+                    if(checkFlight != null){
+
+                        isFlights = true;
+                    }
+
                     //shows the console the current Flight Code
                     Log.e("Flight text info ", "" + flightText.getText().toString());
 
                     flights.clear();
+
+                    //If no flights show up this gets called
+                    if(isFlights == false){
+
+                        flights.add(new Flight("No flights available"));
+                        adapter = new FlightListAdapter(getApplicationContext(), flights);
+                    }
 
                     //this closes the textbox once the user pressed the CHECK button
                     flightText.onEditorAction(EditorInfo.IME_ACTION_DONE);
